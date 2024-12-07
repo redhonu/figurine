@@ -8,7 +8,7 @@ fi
 
 # Check the system architecture
 architecture=$(uname -m)
-if [ "$architecture" == "x86_64" ] || [ "$architecture" == "aarch64" ] || [ "$architecture" == "arm7l" ]; then
+if [ "$architecture" != "x86_64" ] && [ "$architecture" != "aarch64" ] && [ "$architecture" != "armv7l" ]; then
     echo "This script is intended for x86_64 or aarch64 (arm64) architectures only. Aborting."
     exit 1
 fi
@@ -41,11 +41,11 @@ fi
 
 # Determine the appropriate file suffix based on the system architecture
 if [ "$architecture" == "x86_64" ]; then
-    file_suffix="figurine_linux_amd64.*"
+    file_suffix="figurine_linux_amd64_"
 elif [ "$architecture" == "aarch64" ]; then
-    file_suffix="figurine_linux_arm64.*"
+    file_suffix="figurine_linux_arm64_"
 elif [ "$architecture" == "armv7l" ]; then
-    file_suffix="figurine_linux_arm.*"
+    file_suffix="figurine_linux_arm_"
 fi
 
 # Create a temporary directory
